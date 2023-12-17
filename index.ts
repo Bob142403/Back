@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import { pool } from "./database/pool";
 import auth from "./src/auth/auth.route";
+import category from "./src/category/category.route";
 
 const PORT = 5000;
 const app = express();
@@ -20,7 +21,9 @@ app.get("/", async (req, res, next) => {
     message: "Running Node with Express and Typescript",
   });
 });
+
 app.use(auth);
+app.use("/category", category);
 
 app.listen(PORT, () => {
   console.log(`Server running on ${PORT}.`);
